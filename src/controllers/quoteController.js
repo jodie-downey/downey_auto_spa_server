@@ -40,9 +40,6 @@ export const submitQuote = async (req, res) => {
       quote: newQuote,
     });
   } catch (error) {
-    try {
-    } catch (error) {
-      next(error);
-    }
+    next(error);
   }
 };
