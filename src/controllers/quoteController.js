@@ -2,7 +2,7 @@ import { BadRequestError } from "jodiedowney-errors";
 import Quote from "../models/Quote.js";
 import { sendQuoteNotification } from "../config/mailer.js";
 
-export const submitQuote = async (req, res) => {
+export const submitQuote = async (req, res, next) => {
   try {
     const {
       name,
