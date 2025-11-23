@@ -6,11 +6,28 @@ import cors from "cors";
 import quoteRouter from "./routes/quotes.js";
 import reviewsRouter from "./routes/reviews.js";
 
+const allowedOrigins = [
+  "https://downeyautospa.com",
+  "https://www.downeyautospa.com",
+  "https://downey-auto-spa.onrender.com",
+  "http://localhost:5173",
+];
+
 dotenv.config();
 connectDB();
 
 const app = express();
-app.use(cors({ origin: process.env.CLIENT_ORIGIN }));
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+  })
+);
 app.use(express.json());
 
 app.use("/api/quotes", quoteRouter);
