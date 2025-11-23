@@ -30,7 +30,7 @@ app.use(
 );
 app.use(express.json());
 
-app.use("/api/quotes", quoteRouter);
+app.use("/api", quoteRouter);
 app.use("/api/reviews", reviewsRouter);
 app.use(errorHandler);
 
